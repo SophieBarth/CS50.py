@@ -1,4 +1,4 @@
-from csv import reader, DictReader
+from csv import reader
 from sys import argv
 
 sequences = {}
