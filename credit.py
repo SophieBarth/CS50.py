@@ -1,4 +1,5 @@
 def main():
+    #Due to the structure, the prompt repeats whenever the input does not pass the integer, or the luhn check
     a = 0
     while a == 0:
         num = input("Please enter your credit card number: ")
@@ -9,6 +10,7 @@ def main():
                 check3=checktype(num)
                 a = 1
 
+#check if the value is int, otherwise: stop
 def checknum(n):
     try:
         val = int(n)
@@ -17,7 +19,7 @@ def checknum(n):
         print("This is not a credit card number. Characters and signs are not allowed.")
         return 0
 
-
+#function for luhn check, if it fails: stop
 def checkluhn(n):
     #lists for second numbers from back
     secnum = []
@@ -36,7 +38,7 @@ def checkluhn(n):
         secdignum.append(elesum)
     sumsec = sum(secdignum)
 
-    #take the last number in num and add every second from then
+    #take the last number in num and add every second from there on
     firnum = []
     for j in range(len(m) - 1, -1, -2):
         firnum.append(m[j])
@@ -52,6 +54,7 @@ def checkluhn(n):
     else:
         return 1
 
+#function to check for the credit card type
 def checktype(n):
     print("The type is: ", end="")
     typenum = []
@@ -60,7 +63,7 @@ def checktype(n):
     #go through elements in num from back and take every second, go until last
     for i in range(0, len(m)-1):
         typenum.append(m[i])
-    #check American Express
+    #check if it is American Expres, Mastercard, or Visa - otherwise it is invalid
     if len(m) == 15 and typenum[0] == 3 and typenum[1] in [4,7]:
         print("American Express")
     elif len(m) == 16 and typenum[0] == 5 and (typenum[1] in [1,2,3,4,5]):
